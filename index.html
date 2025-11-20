@@ -61,10 +61,10 @@
         <h2 class="title is-2">Analysis of base planes</h2>
         <h3 class="title is-3">Visualization of rendered base planes</h3>
         We provide below videos showing the learned base planes for the cars and faces datasets.
-        
+        <br><br>
         <b>Protocol for base planes visualisations.</b> Recall that, in our standard pipeline, we render a learned Fused-Planes-ULW representation \(T_i\) (corresponding to scene \(i\)) using volume rendering followed by a decoder. 
         Each fused representation is defined as: \(T_i = \sum_{k=1}^{M} w_i^{k} B_k $ (a). \) For the visualizations shown below, we do <b>not</b> render \(T_i\). Instead, we directly render individual base planes \(B_k\). 
-        <br>
+        <br><br>
         <b>Note:</b> In the ULW model, each \(B_k\) has the same dimensionality as \(T_i\), which makes such visualizations possible.
         Using this protocol, we visualize the 10 different <b>base planes</b> below.
 
@@ -76,8 +76,9 @@
           <source src="./static/videos/base_planes_videos/base_planes_cars_trimmed_looped.mp4" type="video/mp4">
         </video>
 
+        <br><br>
         <b>Observations:</b>These visualizations show that base planes can be grouped into two categories:
-        <ul>
+        <ul style="margin-left: 2em;">
           <li><strong>Semantic:</strong> some base planes clearly encode object-level structures (e.g., faces, cars),</li>
           <li><strong>Residual:</strong> other base planes capture finer intra-class variability relative to the semantic base planes.</li>
         </ul>
@@ -96,12 +97,14 @@
           <source src="./static/videos/base_planes_videos/cars01_looped.mp4" type="video/mp4">
         </video>
 
+        <br><br>
         <b>Observations:</b> We observe that a few base planes dominate the final fused representation, and the dominant planes vary across scenes, while other base planes contribute only minor adjustments.
         
+        <br><br>
         <span style="color:red;">
         <b>Note:</b> These visualizations are done using the Fused-Planes-ULW (ultra-lightweight) variant of our method, which traes-off some rendering quality for significant efficiency gains.
         </span>
-        
+
         <br><br>
         <h3 class="title is-3">Interpolating between two weights</h3>
         We visualize below the Fused-Planes-ULW resulting from a weight interpolation. 
@@ -113,6 +116,7 @@
           <source src="./static/videos/base_planes_videos/interp_planes_faces_looped.mp4" type="video/mp4">
         </video>
 
+        <br><br>
         <b>Observations:</b> Interpolations between weights yield coherent scenes, where we transition smoothly from one scene to another (e.g. the mouth closes gradually across the different faces).
 
         <!-- <br><br><br><br><br><br><br><br><br><br>
