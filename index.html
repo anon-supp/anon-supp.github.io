@@ -97,7 +97,11 @@
         </video>
 
         <b>Observations:</b> We observe that a few base planes dominate the final fused representation, and the dominant planes vary across scenes, while other base planes contribute only minor adjustments.
-
+        
+        <span style="color:red;">
+        <b>Note:</b> These visualizations are done using the Fused-Planes-ULW (ultra-lightweight) variant of our method, which traes-off some rendering quality for significant efficiency gains.
+        </span>
+        
         <br><br>
         <h3 class="title is-3">Interpolating between two weights</h3>
         We visualize below the Fused-Planes-ULW resulting from a weight interpolation. 
@@ -110,7 +114,7 @@
         </video>
 
         <b>Observations:</b> Interpolations between weights yield coherent scenes, where we transition smoothly from one scene to another (e.g. the mouth closes gradually across the different faces).
-        
+
         <!-- <br><br><br><br><br><br><br><br><br><br>
         <video id="large-scale" autoplay muted loop playsinline height="100%">
           <source src="./static/videos/appended_videos/basel_faces.mp4"
