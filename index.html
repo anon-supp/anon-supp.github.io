@@ -49,7 +49,7 @@
         <h2 class="title is-2">Large-Scale Results</h2>
         We provide below 1000 additional videos demonstrating our method's performance in large-scale settings.
         <br>
-        Note: The videos might take a few seconds to load.
+        <b>Note:</b> The videos might take a few seconds to load.
         <br><br>
 
         <video id="large-scale" autoplay muted loop playsinline webkit-playsinline height="100%">
@@ -60,8 +60,14 @@
         <br><br>
         <h2 class="title is-2">Analysis of base planes</h2>
         <h3 class="title is-3">Visualization of rendered base planes</h3>
-        We provide below videos showing the learned base planes for different scenes.
-        TODO add analysis from rebuttal.
+        We provide below videos showing the learned base planes for the cars and faces datasets.
+        
+        <b>Protocol for base planes visualisations.</b> Recall that, in our standard pipeline, we render a learned Fused-Planes-ULW representation \(T_i\) (corresponding to scene \(i\)) using volume rendering followed by a decoder. 
+        Each fused representation is defined as: \(T_i = \sum_{k=1}^{M} w_i^{k} B_k $ (a). \) For the visualizations shown below, we do <b>not</b> render \(T_i\). Instead, we directly render individual base planes \(B_k\). 
+        <br>
+        <b>Note:</b> In the ULW model, each \(B_k\) has the same dimensionality as \(T_i\), which makes such visualizations possible.
+        Using this protocol, we visualize the 10 different <b>base planes</b> below.
+
         <br><br>
         <video id="large-scale" autoplay muted loop playsinline webkit-playsinline width="70%">
           <source src="./static/videos/base_planes_videos/base_planes_faces_looped.mp4" type="video/mp4">
@@ -70,8 +76,16 @@
           <source src="./static/videos/base_planes_videos/base_planes_cars_trimmed_looped.mp4" type="video/mp4">
         </video>
 
+        <b>Observations:</b>These visualizations show that base planes can be grouped into two categories:
+        <ul>
+          <li><strong>Semantic:</strong> some base planes clearly encode object-level structures (e.g., faces, cars),</li>
+          <li><strong>Residual:</strong> other base planes capture finer intra-class variability relative to the semantic base planes.</li>
+        </ul>
+        Together, these base planes contribute to each object representation.
+
+        <br><br>
         <h3 class="title is-3">Base planes weights values for two objects</h3>
-        We illustrate below the learned weights for the base planes corresponding to two different objects.
+        We further visualize the values of the learned weights \(W_i\) used to compose each Fused-Planes representation using eq. (a), in the figure below:
         <br><br>
         <img src="./static/videos/base_planes_videos/scene_specific_weights.svg" alt="Base planes weights for two cars" width="50%">
 
@@ -81,14 +95,22 @@
         <video id="large-scale" autoplay muted loop playsinline webkit-playsinline width="30%">
           <source src="./static/videos/base_planes_videos/cars01_looped.mp4" type="video/mp4">
         </video>
+
+        <b>Observations:</b> We observe that a few base planes dominate the final fused representation, and the dominant planes vary across scenes, while other base planes contribute only minor adjustments.
+
         <br><br>
         <h3 class="title is-3">Interpolating between two weights</h3>
-        We also provide the following animations illustrating base planes interpolated between different scenes.
+        We visualize below the Fused-Planes-ULW resulting from a weight interpolation. 
+        Specifically, we first choose two weights \(W_1\) and \(W_2\) corresponding to two scenes. 
+        We then compute \(W_t =  t * W_1 + (1-t) * W_2\) for \( t \in \{0, 0.25, 0.5, 0.75, 1\}\). 
+        Injecting \(W_t\) into eq. (a) yields a set of Fused-Planes-ULW visualized below. 
         <br><br>
         <video id="large-scale" autoplay muted loop playsinline webkit-playsinline width="50%">
           <source src="./static/videos/base_planes_videos/interp_planes_faces_looped.mp4" type="video/mp4">
         </video>
 
+        <b>Observations:</b> Interpolations between weights yield coherent scenes, where we transition smoothly from one scene to another (e.g. the mouth closes gradually across the different faces).
+        
         <!-- <br><br><br><br><br><br><br><br><br><br>
         <video id="large-scale" autoplay muted loop playsinline height="100%">
           <source src="./static/videos/appended_videos/basel_faces.mp4"
