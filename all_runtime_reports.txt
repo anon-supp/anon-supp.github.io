@@ -1,0 +1,103 @@
+################################################################################
+#         SphericalDreamer — Runtime Reports (all world sizes)                 #
+#         Scene: sound_of_music_grass_field                                    #
+################################################################################
+
+
+================================================================================
+                            N = 2  (2 dreams)
+================================================================================
+========================================================================
+                   SphericalDreamer — Runtime Report                    
+========================================================================
+  Total pipeline time: 33m 01.1s  (1981.1s)
+
+  Stage                                              Time       %
+  ──────────────────────────────────────────── ──────────  ──────
+  Panorama Generation (1a)                       3m 54.8s   11.9%
+    ├ Image Generation                             2m 48.5s    8.5%
+    └ Depth Estimation                             1m 03.8s    3.2%
+  LDI Inpainting (1b)                            4m 16.8s   13.0%
+    ├ SAM Foreground Masking                          40.3s    2.0%
+    ├ LAMA Inpainting                                 36.0s    1.8%
+    ├ FLUX Inpainting                              2m 39.9s    8.1%
+    └ Depth Inpainting                                 0.3s    0.0%
+  Pair Alignment & Inpainting (2a)               8m 21.4s   25.3%
+    ├ Point Cloud Rendering                           58.4s    2.9%
+    ├ FLUX Inpainting                              1m 26.9s    4.4%
+    └ Depth Estimation                                36.2s    1.8%
+  LDI Inpainting — Pairs (2b)                    2m 50.1s    8.6%
+    ├ SAM Foreground Masking                          25.2s    1.3%
+    ├ LAMA Inpainting                                 34.1s    1.7%
+    ├ FLUX Inpainting                              1m 38.8s    5.0%
+    └ Depth Inpainting                                 0.2s    0.0%
+  Harmonic Blending (2c)                         7m 22.7s   22.3%
+  Geometry Correction (3)                        3m 59.0s   12.1%
+  Video Rendering (4)                            2m 16.3s    6.9%
+========================================================================
+
+
+================================================================================
+                            N = 3  (3 dreams)
+================================================================================
+========================================================================
+                   SphericalDreamer — Runtime Report                    
+========================================================================
+  Total pipeline time: 53m 25.3s  (3205.3s)
+
+  Stage                                              Time       %
+  ──────────────────────────────────────────── ──────────  ──────
+  Panorama Generation (1a)                       5m 26.8s   10.2%
+    ├ Image Generation                             3m 52.6s    7.3%
+    └ Depth Estimation                             1m 30.4s    2.8%
+  LDI Inpainting (1b)                            5m 45.8s   10.8%
+    ├ SAM Foreground Masking                          56.7s    1.8%
+    ├ LAMA Inpainting                                 26.3s    0.8%
+    ├ FLUX Inpainting                              3m 56.4s    7.4%
+    └ Depth Inpainting                                 0.3s    0.0%
+  Pair Alignment & Inpainting (2a)              14m 20.4s   26.8%
+    ├ Point Cloud Rendering                        1m 55.8s    3.6%
+    ├ FLUX Inpainting                              2m 58.0s    5.6%
+    └ Depth Estimation                             1m 13.0s    2.3%
+  LDI Inpainting — Pairs (2b)                    4m 41.7s    8.8%
+    ├ SAM Foreground Masking                          38.8s    1.2%
+    ├ LAMA Inpainting                                 34.4s    1.1%
+    ├ FLUX Inpainting                              3m 05.4s    5.8%
+    └ Depth Inpainting                                 0.4s    0.0%
+  Harmonic Blending (2c)                        14m 41.4s   27.5%
+  Geometry Correction (3)                        5m 53.8s   11.0%
+  Video Rendering (4)                            2m 35.5s    4.9%
+========================================================================
+
+
+================================================================================
+                            N = 4  (4 dreams)
+================================================================================
+========================================================================
+                   SphericalDreamer — Runtime Report                    
+========================================================================
+  Total pipeline time: 1h 13m 45.6s  (4425.6s)
+
+  Stage                                              Time       %
+  ──────────────────────────────────────────── ──────────  ──────
+  Panorama Generation (1a)                       6m 36.9s    9.0%
+    ├ Image Generation                             4m 33.1s    6.2%
+    └ Depth Estimation                             1m 58.7s    2.7%
+  LDI Inpainting (1b)                            7m 48.7s   10.6%
+    ├ SAM Foreground Masking                       1m 21.3s    1.8%
+    ├ LAMA Inpainting                                 38.0s    0.9%
+    ├ FLUX Inpainting                              5m 13.8s    7.1%
+    └ Depth Inpainting                                 0.3s    0.0%
+  Pair Alignment & Inpainting (2a)              20m 13.7s   27.4%
+    ├ Point Cloud Rendering                        3m 00.9s    4.1%
+    ├ FLUX Inpainting                              4m 16.6s    5.8%
+    └ Depth Estimation                             1m 42.1s    2.3%
+  LDI Inpainting — Pairs (2b)                    6m 08.8s    8.3%
+    ├ SAM Foreground Masking                          54.6s    1.2%
+    ├ LAMA Inpainting                                 35.8s    0.8%
+    ├ FLUX Inpainting                              4m 10.3s    5.7%
+    └ Depth Inpainting                                 0.3s    0.0%
+  Harmonic Blending (2c)                        21m 43.0s   29.4%
+  Geometry Correction (3)                        7m 24.5s   10.0%
+  Video Rendering (4)                            3m 50.1s    5.2%
+========================================================================

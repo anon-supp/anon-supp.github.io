@@ -1,0 +1,1 @@
+# SphericalDreamer: Generating Navigable Immersive 3D Worlds with Panorama Fusion
