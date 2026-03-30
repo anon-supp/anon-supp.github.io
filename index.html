@@ -213,10 +213,10 @@
         })();
         </script>
         <p class="content has-text-justified" style="margin-top: 2em;">
-          <b>Effect of the number of fused panoramas (N) on world generation.</b> We compare 3D worlds generated with varying numbers of fused panoramas (N&nbsp;=&nbsp;3, 5, 7), demonstrating long-range scene generation capabilities of SphericalDreamer. As N increases, the generated worlds cover a wider spatial extent, while maintaining visual coherence.
+          <b>Figure 1. Effect of the number of fused panoramas (N) on world generation.</b> 3D worlds generated with varying numbers of fused panoramas (N&nbsp;=&nbsp;3, 5, 7).
         </p>
         <div class="table-container" style="margin-top: 1.5em;">
-          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 1: Quantitative results for varying world size N.</p>
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 1. Quantitative results for varying world size N.</p>
           <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
             <thead>
               <tr>
@@ -246,7 +246,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">B. Ablation Study (Images)</h2>
+        <h2 class="title is-3">B. Ablation Study</h2>
         <div class="abl-carousel-widget">
           <div class="abl-col-headings" id="ablImgColHeadings"></div>
           <div class="video-carousel carousel--panel" id="ablImgCarousel" tabindex="0">
@@ -365,10 +365,10 @@
         })();
         </script>
         <p class="content has-text-justified" style="margin-top: 2em;">
-          <b>Ablation of LDI and harmonic blending.</b> White regions indicate areas of missing information. Without LDI, the model lacks multiple layer representations, leading to large disoccluded areas upon viewpoint change. Replacing harmonic blending with alternative strategies (naive blending, depth interpolation, or depth inpainting) introduces visible seam artifacts or geometric inconsistencies at the transition regions between panoramas.
+          <b>Figure 2. Ablation of LDI and harmonic blending.</b> Rendered frames from 3D worlds generated with and without LDI, and with alternative blending strategies (naive blending, depth interpolation, depth inpainting) replacing harmonic blending.
         </p>
         <div class="table-container" style="margin-top: 1.5em;">
-          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 2: Quantitative ablation of LDI and harmonic blending.</p>
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 2. Quantitative ablation of LDI and harmonic blending.</p>
           <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
             <thead>
               <tr>
@@ -672,7 +672,7 @@
         })();
         </script>
         <p class="content has-text-justified" style="margin-top: 2em;">
-          <b>Qualitative comparison of layered depth image generation.</b> SphericalDreamer produces more accurate foreground masks, leading to cleaner background panorama generation. In contrast, LayerPano3D tends to either fail to detect the foreground altogether (Misty Bamboo Forest) or overestimate the foreground region (Fungal Underground), while 3D Photography yields masks that omit certain foreground elements or extend beyond the actual foreground boundaries. Consequently, SphericalDreamer generates more realistic background panoramas owing to its superior mask estimates. By comparison, 3D Photography's context-aware inpainting introduces visible artifacts in the reconstructed background, and LayerPano3D alters excessive portions of the original image content.
+          <b>Figure 3. Qualitative comparison of layered depth image generation.</b> Foreground detection masks and inpainted backgrounds produced by SphericalDreamer, LayerPano3D, and 3D Photography.
         </p>
       </div>
     </div>
@@ -782,10 +782,10 @@
         })();
         </script>
         <p class="content has-text-justified" style="margin-top: 2em;">
-          <b>Qualitative comparison of depth estimation.</b> We compare the depth maps predicted in SphericalDreamer with those of dedicated 360° depth estimation models (BiFuse V2, EGFormer, HoHoNet, UniFuse). SphericalDreamer produces the most accurate depth maps with the fewest artifacts and exhibiting sharper object boundaries.
+          <b>Figure 4. Qualitative comparison of depth estimation.</b> Depth maps predicted by SphericalDreamer (via 360MonoDepth) and dedicated 360° depth estimation models (BiFuse V2, EGFormer, HoHoNet, UniFuse).
         </p>
         <div class="table-container" style="margin-top: 1.5em;">
-          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 3: Quantitative evaluation of depth models in the spherical domain.</p>
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 3. Quantitative evaluation of depth models in the spherical domain.</p>
           <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
             <thead>
               <tr>
@@ -820,10 +820,10 @@
           <img src="./static/images/hblending-comparison.webp" alt="Harmonic blending comparison with other alternatives" style="width: 100%; max-width: 100%;" loading="lazy" />
         </div>
         <p class="content has-text-justified" style="margin-top: 2em;">
-          <b>Qualitative comparison of depth completion methods.</b> We compare harmonic blending to alternative depth completion approaches—bilinear interpolation and diffusion-based depth inpainting (InFusion)—by masking regions of a reference depth map and reconstructing them. Harmonic blending produces the smoothest transitions between known and reconstructed regions, without introducing artifacts.
+          <b>Figure 5. Qualitative comparison of depth completion methods.</b> Masked regions of a reference depth map reconstructed via harmonic blending, bilinear interpolation, and diffusion-based depth inpainting (InFusion).
         </p>
         <div class="table-container" style="margin-top: 1.5em;">
-          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 4: Quantitative evaluation at transition regions (blending boundaries).</p>
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 4. Quantitative evaluation at transition regions (blending boundaries).</p>
           <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
             <thead>
               <tr>
@@ -847,11 +847,12 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">F. Generated 3D Worlds</h2>
+        <h2 class="title is-3">G. Additional Metrics</h2>
 
-          <br><br>
-          <div class="video-carousel video-carousel--triple" id="tripleWorldsCarousel">
-            <button type="button" class="carousel-arrow prev" aria-label="Show previous videos">
+        <h3 class="title is-4" style="margin-top: 1.5em;">Consistency of a Single 3D World</h3>
+        <div class="table-container">
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 5. Consistency of a single 3D world.</p>
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
             <thead>
               <tr>
                 <th style="text-align:left;">Method</th>
@@ -871,6 +872,7 @@
 
         <h3 class="title is-4" style="margin-top: 2em;">Rendering Quality of a Single 3D World</h3>
         <div class="table-container">
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 6. Rendering quality of a single 3D world.</p>
           <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
             <thead>
               <tr>
@@ -899,6 +901,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3">H. Runtime Reports</h2>
         <div class="table-container">
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Table 7. Runtime breakdown for different world sizes.</p>
           <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.85rem;">
             <thead>
               <tr>
@@ -944,15 +947,16 @@
     </div>
   </div>
 </section>
-<footer class="footer">
-  <div class="container">
+<section class="section">
+  <div class="container is-max-desktop">
     <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website was built on top of the <a href="https://github.com/nerfies/nerfies.github.io">following template</a>, for which we thank the authors.
-          </p>
-        </div>
+      <div class="column is-full-width">
+        <h2 class="title is-3">F. Generated 3D Worlds</h2>
+        <p class="content has-text-justified" style="margin-top: 0.5em;">These visualizations were already provided in the supplementary material and are included here for convenient viewing.</p>
+
+          <br>
+          <div class="video-carousel video-carousel--triple" id="tripleWorldsCarousel">
+            <button type="button" class="carousel-arrow prev" aria-label="Show previous videos">
               <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
             </button>
             <button type="button" class="carousel-arrow next" aria-label="Show next videos">
@@ -1454,21 +1458,20 @@
           })();
           </script>
 
-          <p style="margin-top: 1.5rem;">SphericalDreamer creates fully immersive 3D environments with complete 360° horizontal and 180° vertical coverage, allowing users to freely explore and navigate within the scene.</p>
 
       </div>
     </div>
   </div>
 </section>
-<section class="section">
-  <div class="container is-max-desktop">
+<footer class="footer">
+  <div class="container">
     <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">G. Additional Metrics</h2>
-
-        <h3 class="title is-4" style="margin-top: 1.5em;">Consistency of a Single 3D World</h3>
-        <div class="table-container">
-          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website was built on top of the <a href="https://github.com/nerfies/nerfies.github.io">following template</a>, for which we thank the authors.
+          </p>
+        </div>
       </div>
     </div>
   </div>
