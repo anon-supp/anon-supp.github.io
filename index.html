@@ -90,15 +90,6 @@
         </div>
       </div>
     </div>
-    <div class="container is-max-desktop hero-tldr-wrap">
-      <div class="columns is-centered">
-        <div class="column has-text-centered" style="flex: none; width: 70%;">
-          <div class="tldr-box">
-            <p class="tldr-box-text"><span class="tldr-label">TL;DR:</span> SphericalDreamer creates large-scale, fully immersive 3D environments from text by generating and fusing multiple panoramic images into a coherent 3D world.</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -141,7 +132,7 @@
             { key: 'bioluminescent_forest_2', caption: 'Bioluminescent Forest' },
             { key: 'phantom_opera_cave_river', caption: 'Phantom Opera Cave River' }
           ];
-          var N_VALUES = [2, 5, 7];
+          var N_VALUES = [3, 5, 7];
           var cols = N_VALUES.length;
 
           var headingsEl = document.getElementById('ablNColHeadings');
@@ -222,8 +213,31 @@
         })();
         </script>
         <p class="content has-text-justified" style="margin-top: 2em;">
-          <b>Effect of the number of fused panoramas (N) on world generation.</b> We compare 3D worlds generated with varying numbers of fused panoramas (N&nbsp;=&nbsp;2, 5, 7), demonstrating long-range scene generation capabilities of SphericalDreamer. As N increases, the generated worlds cover a wider spatial extent, while maintaining visual coherence.
+          <b>Effect of the number of fused panoramas (N) on world generation.</b> We compare 3D worlds generated with varying numbers of fused panoramas (N&nbsp;=&nbsp;3, 5, 7), demonstrating long-range scene generation capabilities of SphericalDreamer. As N increases, the generated worlds cover a wider spatial extent, while maintaining visual coherence.
         </p>
+        <div class="table-container" style="margin-top: 1.5em;">
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Quantitative results for varying world size N.</p>
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Setting</th>
+                <th style="text-align:center;">BRISQUE (&#x2193;)</th>
+                <th style="text-align:center;">Coverage (&#x2191;)</th>
+                <th style="text-align:center;">clip-score (&#x2191;)</th>
+                <th style="text-align:center;">c-clip (&#x2191;)</th>
+                <th style="text-align:center;">CLIP-IQA (&#x2191;)</th>
+                <th style="text-align:center;">Q-Align (&#x2191;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>N=3</td><td style="text-align:center;">43.4683</td><td style="text-align:center;">0.9993</td><td style="text-align:center;">0.3418</td><td style="text-align:center;">0.8608</td><td style="text-align:center;">0.7582</td><td style="text-align:center;">2.3662</td></tr>
+              <tr><td>N=4</td><td style="text-align:center;">42.2766</td><td style="text-align:center;">0.9993</td><td style="text-align:center;">0.3418</td><td style="text-align:center;">0.8471</td><td style="text-align:center;">0.7387</td><td style="text-align:center;">2.3057</td></tr>
+              <tr><td>N=5</td><td style="text-align:center;">41.548</td><td style="text-align:center;">0.9994</td><td style="text-align:center;">0.3403</td><td style="text-align:center;">0.8447</td><td style="text-align:center;">0.7747</td><td style="text-align:center;">2.3088</td></tr>
+              <tr><td>N=6</td><td style="text-align:center;">42.1268</td><td style="text-align:center;">0.9995</td><td style="text-align:center;">0.3400</td><td style="text-align:center;">0.8499</td><td style="text-align:center;">0.7777</td><td style="text-align:center;">2.312</td></tr>
+              <tr><td>N=7</td><td style="text-align:center;">41.5514</td><td style="text-align:center;">0.9994</td><td style="text-align:center;">0.3424</td><td style="text-align:center;">0.8453</td><td style="text-align:center;">0.7913</td><td style="text-align:center;">2.349</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -353,6 +367,29 @@
         <p class="content has-text-justified" style="margin-top: 2em;">
           <b>Ablation of LDI and harmonic blending.</b> White regions indicate areas of missing information. Without LDI, the model lacks multiple layer representations, leading to large disoccluded areas upon viewpoint change. Replacing harmonic blending with alternative strategies (naive blending, depth interpolation, or depth inpainting) introduces visible seam artifacts or geometric inconsistencies at the transition regions between panoramas.
         </p>
+        <div class="table-container" style="margin-top: 1.5em;">
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Quantitative ablation of LDI and harmonic blending.</p>
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Setting</th>
+                <th style="text-align:center;">BRISQUE (&#x2193;)</th>
+                <th style="text-align:center;">Coverage (&#x2191;)</th>
+                <th style="text-align:center;">clip-score (&#x2191;)</th>
+                <th style="text-align:center;">c-clip (&#x2191;)</th>
+                <th style="text-align:center;">CLIP-IQA (&#x2191;)</th>
+                <th style="text-align:center;">Q-Align (&#x2191;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>no LDI</td><td style="text-align:center;">45.8937</td><td style="text-align:center;">0.9652</td><td style="text-align:center;">0.3371</td><td style="text-align:center;">0.8459</td><td style="text-align:center;">0.7358</td><td style="text-align:center;">2.1935</td></tr>
+              <tr><td>no HB (naive instead)</td><td style="text-align:center;">47.1084</td><td style="text-align:center;">0.9242</td><td style="text-align:center;">0.3253</td><td style="text-align:center;">0.8001</td><td style="text-align:center;">0.6503</td><td style="text-align:center;">1.9953</td></tr>
+              <tr><td>no HB (inpainting instead)</td><td style="text-align:center;"><u>44.3742</u></td><td style="text-align:center;">0.9314</td><td style="text-align:center;">0.3272</td><td style="text-align:center;">0.8099</td><td style="text-align:center;">0.5976</td><td style="text-align:center;">2.078</td></tr>
+              <tr><td>no HB (interpolation instead)</td><td style="text-align:center;">45.4247</td><td style="text-align:center;"><u>0.9835</u></td><td style="text-align:center;"><u>0.3377</u></td><td style="text-align:center;"><u>0.8496</u></td><td style="text-align:center;"><u>0.7505</u></td><td style="text-align:center;"><u>2.2595</u></td></tr>
+              <tr><td><b>Ours (LDI + HB)</b></td><td style="text-align:center;"><b>43.4709</b></td><td style="text-align:center;"><b>0.9993</b></td><td style="text-align:center;"><b>0.3418</b></td><td style="text-align:center;"><b>0.8608</b></td><td style="text-align:center;"><b>0.7582</b></td><td style="text-align:center;"><b>2.366</b></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -747,6 +784,29 @@
         <p class="content has-text-justified" style="margin-top: 2em;">
           <b>Qualitative comparison of depth estimation.</b> We compare the depth maps predicted in SphericalDreamer with those of dedicated 360° depth estimation models (BiFuse V2, EGFormer, HoHoNet, UniFuse). SphericalDreamer produces the most accurate depth maps with the fewest artifacts and exhibiting sharper object boundaries.
         </p>
+        <div class="table-container" style="margin-top: 1.5em;">
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Quantitative evaluation of depth models in the spherical domain.</p>
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Model</th>
+                <th style="text-align:center;">AbsRel (&#x2193;)</th>
+                <th style="text-align:center;">RMSE (&#x2193;)</th>
+                <th style="text-align:center;">SI-RMSE (&#x2193;)</th>
+                <th style="text-align:center;">&delta;&lt;1.25 (&#x2191;)</th>
+                <th style="text-align:center;">&delta;&lt;1.25&sup2; (&#x2191;)</th>
+                <th style="text-align:center;">&delta;&lt;1.25&sup3; (&#x2191;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>BiFuseV2</td><td style="text-align:center;">1.0077</td><td style="text-align:center;">1.8958</td><td style="text-align:center;">1.0858</td><td style="text-align:center;">0.1736</td><td style="text-align:center;">0.3368</td><td style="text-align:center;">0.4906</td></tr>
+              <tr><td>EGFormer</td><td style="text-align:center;">0.8048</td><td style="text-align:center;">1.6097</td><td style="text-align:center;">0.8338</td><td style="text-align:center;">0.2107</td><td style="text-align:center;">0.3952</td><td style="text-align:center;">0.5744</td></tr>
+              <tr><td>HoHoNet</td><td style="text-align:center;">1.1524</td><td style="text-align:center;">2.0839</td><td style="text-align:center;">1.1094</td><td style="text-align:center;">0.1711</td><td style="text-align:center;">0.3301</td><td style="text-align:center;">0.4723</td></tr>
+              <tr><td>UniFuse</td><td style="text-align:center;">1.0445</td><td style="text-align:center;">1.9659</td><td style="text-align:center;">1.1372</td><td style="text-align:center;">0.1738</td><td style="text-align:center;">0.3250</td><td style="text-align:center;">0.4706</td></tr>
+              <tr><td><b>SphericalDreamer (via 360monodepth)</b></td><td style="text-align:center;"><b>0.1605</b></td><td style="text-align:center;"><b>0.6008</b></td><td style="text-align:center;"><b>0.2039</b></td><td style="text-align:center;"><b>0.7363</b></td><td style="text-align:center;"><b>0.9317</b></td><td style="text-align:center;"><b>0.9819</b></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -762,6 +822,23 @@
         <p class="content has-text-justified" style="margin-top: 2em;">
           <b>Qualitative comparison of depth completion methods.</b> We compare harmonic blending to alternative depth completion approaches—bilinear interpolation and diffusion-based depth inpainting (InFusion)—by masking regions of a reference depth map and reconstructing them. Harmonic blending produces the smoothest transitions between known and reconstructed regions, without introducing artifacts.
         </p>
+        <div class="table-container" style="margin-top: 1.5em;">
+          <p class="has-text-weight-bold" style="margin-bottom: 0.5em;">Quantitative evaluation at transition regions (blending boundaries).</p>
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Method</th>
+                <th style="text-align:center;">Depth Transition Score (&#x2193;)</th>
+                <th style="text-align:center;">Transition Region MAE (&#x2193;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Interpolation</td><td style="text-align:center;"><u>0.00389</u></td><td style="text-align:center;"><u>0.03067</u></td></tr>
+              <tr><td>Depth inpainting (Infusion)</td><td style="text-align:center;">0.09529</td><td style="text-align:center;">0.09177</td></tr>
+              <tr><td><b>Harmonic Blending (Ours)</b></td><td style="text-align:center;"><b>0.00328</b></td><td style="text-align:center;"><b>0.00079</b></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -1278,6 +1355,107 @@
 
           <p style="margin-top: 1.5rem;">SphericalDreamer creates fully immersive 3D environments with complete 360° horizontal and 180° vertical coverage, allowing users to freely explore and navigate within the scene.</p>
 
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">G. Additional Metrics</h2>
+
+        <h3 class="title is-4" style="margin-top: 1.5em;">Consistency of a Single 3D World</h3>
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Method</th>
+                <th style="text-align:center;">clip-score (&#x2191;)</th>
+                <th style="text-align:center;">c-clip (&#x2191;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>LucidDreamer</td><td style="text-align:center;"><u>0.2988</u></td><td style="text-align:center;">0.6599</td></tr>
+              <tr><td>LayerPano3D</td><td style="text-align:center;">0.2639</td><td style="text-align:center;">0.5787</td></tr>
+              <tr><td>WonderJourney</td><td style="text-align:center;">0.2570</td><td style="text-align:center;">0.6149</td></tr>
+              <tr><td>SceneScape</td><td style="text-align:center;">0.2802</td><td style="text-align:center;"><u>0.7866</u></td></tr>
+              <tr><td><b>SphericalDreamer (ours)</b></td><td style="text-align:center;"><b>0.3325</b></td><td style="text-align:center;"><b>0.8433</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 2em;">Rendering Quality of a Single 3D World</h3>
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.9rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;">Method</th>
+                <th style="text-align:center;">BRISQUE (&#x2193;)</th>
+                <th style="text-align:center;">CLIP-IQA (&#x2191;)</th>
+                <th style="text-align:center;">Q-Align (&#x2191;)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>LucidDreamer</td><td style="text-align:center;">64.351</td><td style="text-align:center;"><u>0.6237</u></td><td style="text-align:center;"><u>1.8908</u></td></tr>
+              <tr><td>LayerPano3D</td><td style="text-align:center;">76.742</td><td style="text-align:center;">0.5077</td><td style="text-align:center;">1.7943</td></tr>
+              <tr><td>WonderJourney</td><td style="text-align:center;">61.684</td><td style="text-align:center;">0.5006</td><td style="text-align:center;">1.6017</td></tr>
+              <tr><td>SceneScape</td><td style="text-align:center;"><u>55.919</u></td><td style="text-align:center;">0.3805</td><td style="text-align:center;">1.7231</td></tr>
+              <tr><td><b>SphericalDreamer (ours)</b></td><td style="text-align:center;"><b>41.737</b></td><td style="text-align:center;"><b>0.7014</b></td><td style="text-align:center;"><b>2.3088</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">H. Runtime Reports</h2>
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable is-narrow is-fullwidth" style="font-size: 0.85rem;">
+            <thead>
+              <tr>
+                <th style="text-align:left;" rowspan="2">Stage</th>
+                <th style="text-align:center;" colspan="2">N=2</th>
+                <th style="text-align:center;" colspan="2">N=3</th>
+                <th style="text-align:center;" colspan="2">N=4</th>
+              </tr>
+              <tr>
+                <th style="text-align:center;">Time</th>
+                <th style="text-align:center;">%</th>
+                <th style="text-align:center;">Time</th>
+                <th style="text-align:center;">%</th>
+                <th style="text-align:center;">Time</th>
+                <th style="text-align:center;">%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="font-weight:bold;"><td>Total pipeline</td><td style="text-align:center;">29m 02s</td><td style="text-align:center;">100</td><td style="text-align:center;">47m 31s</td><td style="text-align:center;">100</td><td style="text-align:center;">1h 06m 21s</td><td style="text-align:center;">100</td></tr>
+              <tr><td>Panorama Generation</td><td style="text-align:center;">3m 55s</td><td style="text-align:center;">13.5</td><td style="text-align:center;">5m 27s</td><td style="text-align:center;">11.5</td><td style="text-align:center;">6m 37s</td><td style="text-align:center;">10.0</td></tr>
+              <tr><td>&ensp; Image Generation</td><td style="text-align:center;">2m 49s</td><td style="text-align:center;">9.7</td><td style="text-align:center;">3m 53s</td><td style="text-align:center;">8.2</td><td style="text-align:center;">4m 33s</td><td style="text-align:center;">6.9</td></tr>
+              <tr><td>&ensp; Depth Estimation</td><td style="text-align:center;">1m 04s</td><td style="text-align:center;">3.7</td><td style="text-align:center;">1m 30s</td><td style="text-align:center;">3.2</td><td style="text-align:center;">1m 59s</td><td style="text-align:center;">3.0</td></tr>
+              <tr><td>LDI Inpainting</td><td style="text-align:center;">4m 17s</td><td style="text-align:center;">14.8</td><td style="text-align:center;">5m 46s</td><td style="text-align:center;">12.1</td><td style="text-align:center;">7m 49s</td><td style="text-align:center;">11.8</td></tr>
+              <tr><td>&ensp; SAM Foreground Masking</td><td style="text-align:center;">40s</td><td style="text-align:center;">2.3</td><td style="text-align:center;">57s</td><td style="text-align:center;">2.0</td><td style="text-align:center;">1m 21s</td><td style="text-align:center;">2.0</td></tr>
+              <tr><td>&ensp; LAMA Inpainting</td><td style="text-align:center;">36s</td><td style="text-align:center;">2.1</td><td style="text-align:center;">26s</td><td style="text-align:center;">0.9</td><td style="text-align:center;">38s</td><td style="text-align:center;">1.0</td></tr>
+              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">2m 40s</td><td style="text-align:center;">9.2</td><td style="text-align:center;">3m 56s</td><td style="text-align:center;">8.3</td><td style="text-align:center;">5m 14s</td><td style="text-align:center;">7.9</td></tr>
+              <tr><td>&ensp; Depth Inpainting</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td></tr>
+              <tr><td>Generative Fusion</td><td style="text-align:center;">8m 21s</td><td style="text-align:center;">28.8</td><td style="text-align:center;">14m 20s</td><td style="text-align:center;">30.2</td><td style="text-align:center;">20m 14s</td><td style="text-align:center;">30.5</td></tr>
+              <tr><td>&ensp; Point Cloud Rendering</td><td style="text-align:center;">58s</td><td style="text-align:center;">3.3</td><td style="text-align:center;">1m 56s</td><td style="text-align:center;">4.1</td><td style="text-align:center;">3m 01s</td><td style="text-align:center;">4.5</td></tr>
+              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">1m 27s</td><td style="text-align:center;">5.0</td><td style="text-align:center;">2m 58s</td><td style="text-align:center;">6.2</td><td style="text-align:center;">4m 17s</td><td style="text-align:center;">6.5</td></tr>
+              <tr><td>&ensp; Depth Estimation</td><td style="text-align:center;">36s</td><td style="text-align:center;">2.1</td><td style="text-align:center;">1m 13s</td><td style="text-align:center;">2.6</td><td style="text-align:center;">1m 42s</td><td style="text-align:center;">2.6</td></tr>
+              <tr><td>LDI Inpainting (intermediate)</td><td style="text-align:center;">2m 50s</td><td style="text-align:center;">9.8</td><td style="text-align:center;">4m 42s</td><td style="text-align:center;">9.9</td><td style="text-align:center;">6m 09s</td><td style="text-align:center;">9.3</td></tr>
+              <tr><td>&ensp; SAM Foreground Masking</td><td style="text-align:center;">25s</td><td style="text-align:center;">1.4</td><td style="text-align:center;">39s</td><td style="text-align:center;">1.4</td><td style="text-align:center;">55s</td><td style="text-align:center;">1.4</td></tr>
+              <tr><td>&ensp; LAMA Inpainting</td><td style="text-align:center;">34s</td><td style="text-align:center;">2.0</td><td style="text-align:center;">34s</td><td style="text-align:center;">1.2</td><td style="text-align:center;">36s</td><td style="text-align:center;">0.9</td></tr>
+              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">1m 39s</td><td style="text-align:center;">5.7</td><td style="text-align:center;">3m 05s</td><td style="text-align:center;">6.5</td><td style="text-align:center;">4m 10s</td><td style="text-align:center;">6.3</td></tr>
+              <tr><td>&ensp; Depth Inpainting</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td></tr>
+              <tr><td>Harmonic Blending</td><td style="text-align:center;">7m 23s</td><td style="text-align:center;">25.4</td><td style="text-align:center;">14m 41s</td><td style="text-align:center;">30.9</td><td style="text-align:center;">21m 43s</td><td style="text-align:center;">32.7</td></tr>
+              <tr><td>Video Rendering</td><td style="text-align:center;">2m 16s</td><td style="text-align:center;">7.8</td><td style="text-align:center;">2m 36s</td><td style="text-align:center;">5.5</td><td style="text-align:center;">3m 50s</td><td style="text-align:center;">5.8</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

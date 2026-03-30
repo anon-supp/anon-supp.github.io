@@ -7,7 +7,7 @@ html {
   overflow-x: clip;
 }
 
-/* Viewport-wide light band behind hero figure + TL;DR (not a card—full screen width at any zoom) */
+/* Viewport-wide light band behind hero figure (not a card—full screen width at any zoom) */
 .hero-highlight-bleed {
   width: 100vw;
   max-width: none;
@@ -16,29 +16,6 @@ html {
   box-sizing: border-box;
   background: rgb(251, 252, 253);
   padding: 1.5rem 0 2rem;
-}
-
-/* Hero TL;DR — vertical rhythm vs figure above and abstract section below */
-.hero-tldr-wrap {
-  margin-top: 2.25rem;
-  margin-bottom: 2.25rem;
-}
-
-/* Hero TL;DR — plain text, no card */
-.tldr-box {
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-.tldr-box-text {
-  font-size: 1.35em;
-  margin: 0;
-  line-height: 1.5;
-  color: #363636;
-}
-
-.tldr-label {
-  font-weight: 700;
 }
 
 /* Method: figure flush; caption carries spacing above */
