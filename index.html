@@ -1339,5 +1339,11 @@
   });
 })();
 </script>
+<script>
+document.querySelectorAll('video').forEach(function(v) {
+  v.playbackRate = 0.8;
+  v.addEventListener('play', function() { this.playbackRate = 0.8; });
+});
+</script>
 </body>
 </html>
