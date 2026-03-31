@@ -46,7 +46,7 @@
 | **SphericalDreamer (via 360monodepth)** | **0.1605** | **0.6008** | **0.2039** | **0.7363** | **0.9317** | **0.9819** |
 
 
-## Consistency of a Single 3D World
+## Consistency of Generated 3D World
 
 @ Cursor: At the end, create a new section named "addtionnal metrics" This one should be in a subsection named "quality"
 
