@@ -8,27 +8,27 @@ Scene: *sound_of_music_grass_field*
 | Stage | N=2 | | N=3 | | N=4 | |
 |:------|:--------:|:-----:|:--------:|:-----:|:---------:|:-----:|
 |       | Time     |   %   | Time     |   %   | Time      |   %   |
-| **Total pipeline** | **33m 01s** | **100** | **53m 25s** | **100** | **1h 13m 46s** | **100** |
-| Panorama Generation | 3m 55s | 11.9 | 5m 27s | 10.2 | 6m 37s | 9.0 |
-| &ensp; Image Generation | 2m 49s | 8.5 | 3m 53s | 7.3 | 4m 33s | 6.2 |
-| &ensp; Depth Estimation | 1m 04s | 3.2 | 1m 30s | 2.8 | 1m 59s | 2.7 |
-| LDI Inpainting | 4m 17s | 13.0 | 5m 46s | 10.8 | 7m 49s | 10.6 |
-| &ensp; SAM Foreground Masking | 40s | 2.0 | 57s | 1.8 | 1m 21s | 1.8 |
-| &ensp; LAMA Inpainting | 36s | 1.8 | 26s | 0.8 | 38s | 0.9 |
-| &ensp; FLUX Inpainting | 2m 40s | 8.1 | 3m 56s | 7.4 | 5m 14s | 7.1 |
+| **Total pipeline** | **27m 41s** | **100** | **45m 13s** | **100** | **1h 02m 33s** | **100** |
+| Panorama Generation | 3m 55s | 14.1 | 5m 27s | 12.1 | 6m 37s | 10.6 |
+| &ensp; Image Generation | 2m 49s | 10.2 | 3m 53s | 8.6 | 4m 33s | 7.3 |
+| &ensp; Depth Estimation | 1m 04s | 3.9 | 1m 30s | 3.3 | 1m 59s | 3.2 |
+| LDI Inpainting | 4m 17s | 15.5 | 5m 46s | 12.8 | 7m 49s | 12.5 |
+| &ensp; SAM Foreground Masking | 40s | 2.4 | 57s | 2.1 | 1m 21s | 2.2 |
+| &ensp; LAMA Inpainting | 36s | 2.2 | 26s | 1.0 | 38s | 1.0 |
+| &ensp; FLUX Inpainting | 2m 40s | 9.6 | 3m 56s | 8.7 | 5m 14s | 8.4 |
 | &ensp; Depth Inpainting | 0s | 0.0 | 0s | 0.0 | 0s | 0.0 |
-| Generative Fusion | 8m 21s | 25.3 | 14m 20s | 26.8 | 20m 14s | 27.4 |
-| &ensp; Point Cloud Rendering | 58s | 2.9 | 1m 56s | 3.6 | 3m 01s | 4.1 |
-| &ensp; FLUX Inpainting | 1m 27s | 4.4 | 2m 58s | 5.6 | 4m 17s | 5.8 |
-| &ensp; Depth Estimation | 36s | 1.8 | 1m 13s | 2.3 | 1m 42s | 2.3 |
-| LDI Inpainting (intermeidiate viewpoint) | 2m 50s | 8.6 | 4m 42s | 8.8 | 6m 09s | 8.3 |
-| &ensp; SAM Foreground Masking | 25s | 1.3 | 39s | 1.2 | 55s | 1.2 |
-| &ensp; LAMA Inpainting | 34s | 1.7 | 34s | 1.1 | 36s | 0.8 |
-| &ensp; FLUX Inpainting | 1m 39s | 5.0 | 3m 05s | 5.8 | 4m 10s | 5.7 |
+| Generative Fusion | 3m 01s | 10.9 | 6m 07s | 13.5 | 9m 00s | 14.4 |
+| &ensp; Point Cloud Rendering | 58s | 3.5 | 1m 56s | 4.3 | 3m 01s | 4.8 |
+| &ensp; FLUX Inpainting | 1m 27s | 5.2 | 2m 58s | 6.6 | 4m 17s | 6.8 |
+| &ensp; Depth Estimation | 36s | 2.2 | 1m 13s | 2.7 | 1m 42s | 2.7 |
+| LDI Inpainting (intermeidiate viewpoint) | 2m 50s | 10.2 | 4m 42s | 10.4 | 6m 09s | 9.8 |
+| &ensp; SAM Foreground Masking | 25s | 1.5 | 39s | 1.4 | 55s | 1.5 |
+| &ensp; LAMA Inpainting | 34s | 2.0 | 34s | 1.3 | 36s | 1.0 |
+| &ensp; FLUX Inpainting | 1m 39s | 6.0 | 3m 05s | 6.8 | 4m 10s | 6.7 |
 | &ensp; Depth Inpainting | 0s | 0.0 | 0s | 0.0 | 0s | 0.0 |
-| Harmonic Blending | 7m 23s | 22.3 | 14m 41s | 27.5 | 21m 43s | 29.4 |
-| Geometry Correction | 3m 59s | 12.1 | 5m 54s | 11.0 | 7m 25s | 10.0 |
-| Video Rendering | 2m 16s | 6.9 | 2m 36s | 4.9 | 3m 50s | 5.2 |
+| Harmonic Blending | 7m 23s | 26.7 | 14m 41s | 32.5 | 21m 43s | 34.7 |
+| Geometry Correction | 3m 59s | 14.4 | 5m 54s | 13.0 | 7m 25s | 11.9 |
+| Video Rendering | 2m 16s | 8.2 | 2m 36s | 5.8 | 3m 50s | 6.1 |
 
 
 

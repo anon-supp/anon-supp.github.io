@@ -149,20 +149,21 @@
           var dotsContainer = document.getElementById('ablNDots');
           var carousel = document.getElementById('ablNCarousel');
 
-          SCENES.forEach(function(scene) {
+          var slideVideos = [];
+
+          SCENES.forEach(function(scene, sceneIdx) {
             var slide = document.createElement('div');
             slide.className = 'carousel-slide';
             slide.dataset.caption = scene.caption;
             var grid = document.createElement('div');
             grid.className = 'abl-grid';
             grid.style.gridTemplateColumns = 'repeat(' + cols + ', minmax(0, 1fr))';
+            var videos = [];
             N_VALUES.forEach(function(n) {
               var cell = document.createElement('div');
               cell.className = 'abl-grid__cell';
               var video = document.createElement('video');
-              video.autoplay = true;
               video.muted = true;
-              video.loop = true;
               video.playsInline = true;
               video.preload = 'auto';
               var source = document.createElement('source');
@@ -173,9 +174,35 @@
               video.appendChild(source);
               cell.appendChild(video);
               grid.appendChild(cell);
+              videos.push(video);
             });
+            slideVideos.push(videos);
             slide.appendChild(grid);
             track.appendChild(slide);
+          });
+
+          function restartSlideVideos(idx) {
+            var vids = slideVideos[idx];
+            if (!vids) return;
+            vids.forEach(function(v) {
+              v.currentTime = 0;
+              v.playbackRate = 0.7;
+              v.play().catch(function() {});
+            });
+          }
+
+          slideVideos.forEach(function(vids, idx) {
+            var endedFlags = vids.map(function() { return false; });
+            vids.forEach(function(v, vi) {
+              v.addEventListener('ended', function() {
+                endedFlags[vi] = true;
+                var allDone = endedFlags.every(function(f) { return f; });
+                if (allDone) {
+                  for (var k = 0; k < endedFlags.length; k++) endedFlags[k] = false;
+                  restartSlideVideos(idx);
+                }
+              });
+            });
           });
 
           var slides = track.querySelectorAll('.carousel-slide');
@@ -201,6 +228,7 @@
             track.style.transform = 'translateX(-' + (current * 100 / total) + '%)';
             captionEl.textContent = slides[current].dataset.caption || '';
             dots.forEach(function(d, j) { d.classList.toggle('active', j === current); });
+            restartSlideVideos(current);
           }
 
           carousel.querySelector('.carousel-arrow.prev').addEventListener('click', function() { goTo(current - 1); });
@@ -918,26 +946,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr style="font-weight:bold;"><td>Total pipeline</td><td style="text-align:center;">29m 02s</td><td style="text-align:center;">100</td><td style="text-align:center;">47m 31s</td><td style="text-align:center;">100</td><td style="text-align:center;">1h 06m 21s</td><td style="text-align:center;">100</td></tr>
-              <tr><td>Panorama Generation</td><td style="text-align:center;">3m 55s</td><td style="text-align:center;">13.5</td><td style="text-align:center;">5m 27s</td><td style="text-align:center;">11.5</td><td style="text-align:center;">6m 37s</td><td style="text-align:center;">10.0</td></tr>
-              <tr><td>&ensp; Image Generation</td><td style="text-align:center;">2m 49s</td><td style="text-align:center;">9.7</td><td style="text-align:center;">3m 53s</td><td style="text-align:center;">8.2</td><td style="text-align:center;">4m 33s</td><td style="text-align:center;">6.9</td></tr>
-              <tr><td>&ensp; Depth Estimation</td><td style="text-align:center;">1m 04s</td><td style="text-align:center;">3.7</td><td style="text-align:center;">1m 30s</td><td style="text-align:center;">3.2</td><td style="text-align:center;">1m 59s</td><td style="text-align:center;">3.0</td></tr>
-              <tr><td>LDI Inpainting</td><td style="text-align:center;">4m 17s</td><td style="text-align:center;">14.8</td><td style="text-align:center;">5m 46s</td><td style="text-align:center;">12.1</td><td style="text-align:center;">7m 49s</td><td style="text-align:center;">11.8</td></tr>
-              <tr><td>&ensp; SAM Foreground Masking</td><td style="text-align:center;">40s</td><td style="text-align:center;">2.3</td><td style="text-align:center;">57s</td><td style="text-align:center;">2.0</td><td style="text-align:center;">1m 21s</td><td style="text-align:center;">2.0</td></tr>
-              <tr><td>&ensp; LAMA Inpainting</td><td style="text-align:center;">36s</td><td style="text-align:center;">2.1</td><td style="text-align:center;">26s</td><td style="text-align:center;">0.9</td><td style="text-align:center;">38s</td><td style="text-align:center;">1.0</td></tr>
-              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">2m 40s</td><td style="text-align:center;">9.2</td><td style="text-align:center;">3m 56s</td><td style="text-align:center;">8.3</td><td style="text-align:center;">5m 14s</td><td style="text-align:center;">7.9</td></tr>
+              <tr style="font-weight:bold; font-size:1.05rem; background:#f0f4ff;"><td>Total pipeline</td><td style="text-align:center;">23m 42s</td><td style="text-align:center;">100</td><td style="text-align:center;">39m 19s</td><td style="text-align:center;">100</td><td style="text-align:center;">55m 08s</td><td style="text-align:center;">100</td></tr>
+              <tr style="font-weight:bold;"><td>Panorama Generation</td><td style="text-align:center;">3m 55s</td><td style="text-align:center;">16.5</td><td style="text-align:center;">5m 27s</td><td style="text-align:center;">13.9</td><td style="text-align:center;">6m 37s</td><td style="text-align:center;">12.0</td></tr>
+              <tr><td>&ensp; Image Generation</td><td style="text-align:center;">2m 49s</td><td style="text-align:center;">11.9</td><td style="text-align:center;">3m 53s</td><td style="text-align:center;">9.9</td><td style="text-align:center;">4m 33s</td><td style="text-align:center;">8.3</td></tr>
+              <tr><td>&ensp; Depth Estimation</td><td style="text-align:center;">1m 04s</td><td style="text-align:center;">4.5</td><td style="text-align:center;">1m 30s</td><td style="text-align:center;">3.8</td><td style="text-align:center;">1m 59s</td><td style="text-align:center;">3.6</td></tr>
+              <tr style="font-weight:bold;"><td>LDI Inpainting</td><td style="text-align:center;">4m 17s</td><td style="text-align:center;">18.1</td><td style="text-align:center;">5m 46s</td><td style="text-align:center;">14.7</td><td style="text-align:center;">7m 49s</td><td style="text-align:center;">14.2</td></tr>
+              <tr><td>&ensp; SAM Foreground Masking</td><td style="text-align:center;">40s</td><td style="text-align:center;">2.8</td><td style="text-align:center;">57s</td><td style="text-align:center;">2.4</td><td style="text-align:center;">1m 21s</td><td style="text-align:center;">2.4</td></tr>
+              <tr><td>&ensp; LAMA Inpainting</td><td style="text-align:center;">36s</td><td style="text-align:center;">2.5</td><td style="text-align:center;">26s</td><td style="text-align:center;">1.1</td><td style="text-align:center;">38s</td><td style="text-align:center;">1.1</td></tr>
+              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">2m 40s</td><td style="text-align:center;">11.3</td><td style="text-align:center;">3m 56s</td><td style="text-align:center;">10.0</td><td style="text-align:center;">5m 14s</td><td style="text-align:center;">9.5</td></tr>
               <tr><td>&ensp; Depth Inpainting</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td></tr>
-              <tr><td>Generative Fusion</td><td style="text-align:center;">8m 21s</td><td style="text-align:center;">28.8</td><td style="text-align:center;">14m 20s</td><td style="text-align:center;">30.2</td><td style="text-align:center;">20m 14s</td><td style="text-align:center;">30.5</td></tr>
-              <tr><td>&ensp; Point Cloud Rendering</td><td style="text-align:center;">58s</td><td style="text-align:center;">3.3</td><td style="text-align:center;">1m 56s</td><td style="text-align:center;">4.1</td><td style="text-align:center;">3m 01s</td><td style="text-align:center;">4.5</td></tr>
-              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">1m 27s</td><td style="text-align:center;">5.0</td><td style="text-align:center;">2m 58s</td><td style="text-align:center;">6.2</td><td style="text-align:center;">4m 17s</td><td style="text-align:center;">6.5</td></tr>
-              <tr><td>&ensp; Depth Estimation</td><td style="text-align:center;">36s</td><td style="text-align:center;">2.1</td><td style="text-align:center;">1m 13s</td><td style="text-align:center;">2.6</td><td style="text-align:center;">1m 42s</td><td style="text-align:center;">2.6</td></tr>
-              <tr><td>LDI Inpainting (intermediate)</td><td style="text-align:center;">2m 50s</td><td style="text-align:center;">9.8</td><td style="text-align:center;">4m 42s</td><td style="text-align:center;">9.9</td><td style="text-align:center;">6m 09s</td><td style="text-align:center;">9.3</td></tr>
-              <tr><td>&ensp; SAM Foreground Masking</td><td style="text-align:center;">25s</td><td style="text-align:center;">1.4</td><td style="text-align:center;">39s</td><td style="text-align:center;">1.4</td><td style="text-align:center;">55s</td><td style="text-align:center;">1.4</td></tr>
-              <tr><td>&ensp; LAMA Inpainting</td><td style="text-align:center;">34s</td><td style="text-align:center;">2.0</td><td style="text-align:center;">34s</td><td style="text-align:center;">1.2</td><td style="text-align:center;">36s</td><td style="text-align:center;">0.9</td></tr>
-              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">1m 39s</td><td style="text-align:center;">5.7</td><td style="text-align:center;">3m 05s</td><td style="text-align:center;">6.5</td><td style="text-align:center;">4m 10s</td><td style="text-align:center;">6.3</td></tr>
+              <tr style="font-weight:bold;"><td>Generative Fusion</td><td style="text-align:center;">3m 01s</td><td style="text-align:center;">12.7</td><td style="text-align:center;">6m 07s</td><td style="text-align:center;">15.6</td><td style="text-align:center;">9m 00s</td><td style="text-align:center;">16.3</td></tr>
+              <tr><td>&ensp; Point Cloud Rendering</td><td style="text-align:center;">58s</td><td style="text-align:center;">4.1</td><td style="text-align:center;">1m 56s</td><td style="text-align:center;">4.9</td><td style="text-align:center;">3m 01s</td><td style="text-align:center;">5.5</td></tr>
+              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">1m 27s</td><td style="text-align:center;">6.1</td><td style="text-align:center;">2m 58s</td><td style="text-align:center;">7.5</td><td style="text-align:center;">4m 17s</td><td style="text-align:center;">7.8</td></tr>
+              <tr><td>&ensp; Depth Estimation</td><td style="text-align:center;">36s</td><td style="text-align:center;">2.5</td><td style="text-align:center;">1m 13s</td><td style="text-align:center;">3.1</td><td style="text-align:center;">1m 42s</td><td style="text-align:center;">3.1</td></tr>
+              <tr style="font-weight:bold;"><td>LDI Inpainting (intermediate)</td><td style="text-align:center;">2m 50s</td><td style="text-align:center;">12.0</td><td style="text-align:center;">4m 42s</td><td style="text-align:center;">12.0</td><td style="text-align:center;">6m 09s</td><td style="text-align:center;">11.2</td></tr>
+              <tr><td>&ensp; SAM Foreground Masking</td><td style="text-align:center;">25s</td><td style="text-align:center;">1.8</td><td style="text-align:center;">39s</td><td style="text-align:center;">1.7</td><td style="text-align:center;">55s</td><td style="text-align:center;">1.7</td></tr>
+              <tr><td>&ensp; LAMA Inpainting</td><td style="text-align:center;">34s</td><td style="text-align:center;">2.4</td><td style="text-align:center;">34s</td><td style="text-align:center;">1.4</td><td style="text-align:center;">36s</td><td style="text-align:center;">1.1</td></tr>
+              <tr><td>&ensp; FLUX Inpainting</td><td style="text-align:center;">1m 39s</td><td style="text-align:center;">7.0</td><td style="text-align:center;">3m 05s</td><td style="text-align:center;">7.8</td><td style="text-align:center;">4m 10s</td><td style="text-align:center;">7.6</td></tr>
               <tr><td>&ensp; Depth Inpainting</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td><td style="text-align:center;">0s</td><td style="text-align:center;">0.0</td></tr>
-              <tr><td>Harmonic Blending</td><td style="text-align:center;">7m 23s</td><td style="text-align:center;">25.4</td><td style="text-align:center;">14m 41s</td><td style="text-align:center;">30.9</td><td style="text-align:center;">21m 43s</td><td style="text-align:center;">32.7</td></tr>
-              <tr><td>Video Rendering</td><td style="text-align:center;">2m 16s</td><td style="text-align:center;">7.8</td><td style="text-align:center;">2m 36s</td><td style="text-align:center;">5.5</td><td style="text-align:center;">3m 50s</td><td style="text-align:center;">5.8</td></tr>
+              <tr style="font-weight:bold;"><td>Harmonic Blending</td><td style="text-align:center;">7m 23s</td><td style="text-align:center;">31.2</td><td style="text-align:center;">14m 41s</td><td style="text-align:center;">37.3</td><td style="text-align:center;">21m 43s</td><td style="text-align:center;">39.4</td></tr>
+              <tr style="font-weight:bold;"><td>Video Rendering</td><td style="text-align:center;">2m 16s</td><td style="text-align:center;">9.6</td><td style="text-align:center;">2m 36s</td><td style="text-align:center;">6.6</td><td style="text-align:center;">3m 50s</td><td style="text-align:center;">7.0</td></tr>
             </tbody>
           </table>
         </div>
