@@ -897,3 +897,58 @@ section.section .columns > .column.is-full-width {
     font-size: 1.12rem;
   }
 }
+
+/* ── Conditional generation variability grid carousel ── */
+
+.cond-var-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+  min-width: 0;
+}
+
+.cond-var-grid__cell {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.cond-var-grid__cell img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  border-radius: 6px;
+}
+
+#condVarCarousel:focus:not(:focus-visible) {
+  outline: none;
+}
+
+#condVarCarousel .carousel-slide {
+  aspect-ratio: auto;
+}
+
+#condVarCarousel .carousel-caption {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 0.7rem;
+  line-height: 1.3;
+  color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .cond-var-grid {
+    gap: 2px;
+  }
+
+  .cond-var-grid__cell img {
+    border-radius: 4px;
+  }
+
+  #condVarCarousel .carousel-caption {
+    font-size: 1.12rem;
+  }
+}

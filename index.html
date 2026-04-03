@@ -977,6 +977,105 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
+        <h2 class="title is-3">I. Consistency of Independently Generated Panoramas Under Text Conditioning</h2>
+        <div class="video-carousel carousel--panel" id="condVarCarousel" tabindex="0">
+          <button type="button" class="carousel-arrow prev" aria-label="Previous scene">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          </button>
+          <button type="button" class="carousel-arrow next" aria-label="Next scene">
+            <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+          </button>
+          <div class="carousel-track" id="condVarTrack"></div>
+          <p class="carousel-caption" id="condVarCaption"></p>
+          <div class="carousel-dots" id="condVarDots"></div>
+        </div>
+        <script>
+        (function() {
+          var BASE = './static/images/cond_gen_variability';
+          var NUM_IMAGES = 12;
+          var SCENES = [
+            { key: 'Wetlands', caption: 'Wetlands' },
+            { key: 'dense_rainforest_understory', caption: 'Jungle' },
+            { key: 'endless_lavender_fields', caption: 'Lavender Fields' },
+            { key: 'martian_badlands_2', caption: 'Martian Badlands' },
+            { key: 'phantom_opera_cave_river', caption: 'Phantom Opera Cave River' },
+            { key: 'post_apocalyptic_lastofus_cave', caption: 'Post-Apocalyptic Cave' },
+            { key: 'sound_of_music_grass_field', caption: 'Sound of Music Grass Field' },
+            { key: 'upside_down_stranger_things', caption: 'Desolated Landscape' }
+          ];
+
+          function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+
+          var track = document.getElementById('condVarTrack');
+          var captionEl = document.getElementById('condVarCaption');
+          var dotsContainer = document.getElementById('condVarDots');
+          var carousel = document.getElementById('condVarCarousel');
+
+          SCENES.forEach(function(scene) {
+            var slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            slide.dataset.caption = scene.caption;
+            var grid = document.createElement('div');
+            grid.className = 'cond-var-grid';
+            for (var i = 0; i < NUM_IMAGES; i++) {
+              var cell = document.createElement('div');
+              cell.className = 'cond-var-grid__cell';
+              var img = document.createElement('img');
+              img.src = BASE + '/' + scene.key + '/image' + pad2(i) + '.png';
+              img.alt = scene.caption + ' sample ' + (i + 1);
+              img.loading = 'lazy';
+              cell.appendChild(img);
+              grid.appendChild(cell);
+            }
+            slide.appendChild(grid);
+            track.appendChild(slide);
+          });
+
+          var slides = track.querySelectorAll('.carousel-slide');
+          var total = slides.length;
+          if (total === 0) return;
+          var current = 0;
+
+          for (var i = 0; i < total; i++) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to scene ' + (i + 1));
+            dot.dataset.index = String(i);
+            dotsContainer.appendChild(dot);
+          }
+          var dots = dotsContainer.querySelectorAll('.carousel-dot');
+          carousel.style.setProperty('--carousel-slides', String(total));
+
+          function goTo(index) {
+            if (index < 0) index = total - 1;
+            if (index >= total) index = 0;
+            current = index;
+            track.style.transform = 'translateX(-' + (current * 100 / total) + '%)';
+            captionEl.textContent = slides[current].dataset.caption || '';
+            dots.forEach(function(d, j) { d.classList.toggle('active', j === current); });
+          }
+
+          carousel.querySelector('.carousel-arrow.prev').addEventListener('click', function() { goTo(current - 1); });
+          carousel.querySelector('.carousel-arrow.next').addEventListener('click', function() { goTo(current + 1); });
+          dotsContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('carousel-dot')) goTo(parseInt(e.target.dataset.index, 10));
+          });
+          goTo(0);
+          carousel.addEventListener('click', function() { carousel.focus({ preventScroll: true }); });
+        })();
+        </script>
+        <p class="content has-text-justified" style="margin-top: 2em;">
+          <b>Figure 6. Semantic consistency of independently generated panoramas.</b> For each text prompt, 12 panoramas are generated independently by our model. Despite the inherent stochasticity of the diffusion process, the outputs exhibit strong semantic and chromatic coherence.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
         <h2 class="title is-3">F. Generated 3D Worlds</h2>
         <p class="content has-text-justified" style="margin-top: 0.5em;">These visualizations were already provided in the supplementary material and are included here for convenient viewing.</p>
 
